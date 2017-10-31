@@ -7,7 +7,7 @@ The purpose of this project is to analyse the "impact" that events happening aro
 We will emphasize our analysis on the following research questions:
 1. Which and what kind of events happened in Switzerland and globally.
 2. How twitter users reacted during and after an event, that could be interesting regarding social movements, political events, natural disasters, festivals, etc.
-3. What are the motivations of the users, through their tweets
+3. What are the motivations of the users
 4. Examine the impact of a global event in Switzerland
 
 # Dataset
