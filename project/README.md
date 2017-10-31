@@ -18,8 +18,13 @@ Regarding the event dataset, we are mostly interested in using the actor and eve
 Regarding the Twitter datasets, we are planning to determine whether a tweet is referring to a specific event by comparing the timestamps of the tweet and the event, as well as by exploiting natural language processing frameworks (e.g. NLTK). If time permits, we would also like to try to infer useful information from the text of the tweets (e.g. positive, negative or neutral tone from the tweet text in comparison to the AvgTone attribute of the event, as provided by the GDELT dataset).
 
 Finally, if possible, we will try to extract geolocation information regarding users of the global tweets dataset, from the Twitter API, due to the lack of such information in the dataset itself. This will probably help us test our questions/assumptions in a more global scale.
+
 # A list of internal milestones up until project milestone 2
-Add here a sketch of your planning for the next project milestone.
+Our workflow and goals up until milestone 2 are outlined below:
+* Obtain the chosen datasets and figure out their properties (columns, size, etc.).
+* Clean the datasets (keep only relevant columns, deal with missing data).
+* Try to make the connection between the tweets and the events.
+* Clearly state the final analysis goals and start the storytelling...
 
 # Questions for TAa
 Add here some questions you have for us, in general or project-specific.
