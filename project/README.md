@@ -11,8 +11,13 @@ We will emphasize our analysis on the following research questions:
 4. Examine the impact of a global event in Switzerland
 
 # Dataset
-List the dataset(s) you want to use, and some ideas on how do you expect to get, manage, process and enrich it/them. Show us you've read the docs and some examples, and you've a clear idea on what to expect. Discuss data size and format if relevant.
+For the purposes of our project, we would like to combine the GDELT Event Dataset with the dataset of Swiss tweets, initially, and the dataset of global tweets, subsequently. 
 
+Regarding the event dataset, we are mostly interested in using the actor and event action attributes, in order to classify the events according to their type, significance and geographical proximity to our selected tweeter users (e.g. Swiss users). According to our needs, we will also analyse the events as individual cases and/or as parts of sets of events during a specific time period (week, month, year etc). 
+
+Regarding the Twitter datasets, we are planning to determine whether a tweet is referring to a specific event by comparing the timestamps of the tweet and the event, as well as by exploiting natural language processing frameworks (e.g. NLTK). If time permits, we would also like to try to infer useful information from the text of the tweets (e.g. positive, negative or neutral tone from the tweet text in comparison to the AvgTone attribute of the event, as provided by the GDELT dataset).
+
+Finally, if possible, we will try to extract geolocation information regarding users of the global tweets dataset, from the Twitter API, due to the lack of such information in the dataset itself. This will probably help us test our questions/assumptions in a more global scale.
 # A list of internal milestones up until project milestone 2
 Add here a sketch of your planning for the next project milestone.
 
