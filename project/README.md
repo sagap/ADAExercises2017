@@ -26,5 +26,5 @@ Our workflow and goals up until milestone 2 are outlined below:
 * Try to make the connection between the tweets and the events.
 * Clearly state the final analysis goals and start the storytelling...
 
-# Questions for TAa
+# Questions for TAs
 Add here some questions you have for us, in general or project-specific.
