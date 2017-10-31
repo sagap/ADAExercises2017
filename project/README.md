@@ -1,7 +1,7 @@
-# Title
+# Event analysis through "Twitter glasses"
 
 # Abstract
-A 150 word description of the project idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?
+The purpose of this project is to analyse the "impact" that events happening around the globe have in the Twitter social network. The analysis seeks to "connect" tweets from Switzerland and all over the world with the events, based on a number of variables, e.g. the reaction time of the population to an event, the coverage of the event (how many people were interested or expressed an opinion about it), etc. With the general belief being that the media world focuses more on the less significant events, we want to compare and contrast the impact of serious vs. less serious events and draw conclusions about the population's behaviour. Furthermore, since we have geolocation data only for the tweets from Switzerland, we could compare the impact the various events have on Swiss people vs. the rest of the world.
 
 # Research questions
 A list of research questions you would like to address during the project. 
