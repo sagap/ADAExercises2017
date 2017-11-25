@@ -38,13 +38,13 @@ The `upload_to_cluster.sh` script will `rsync` the `tweeter_events` directory to
 In order to run a job on the cluster you have to submit your Python script file with the following command:
 
 ```
-spark-submit spark_job.py
+spark-submit --master yarn spark_job.py
 ```
 
 Most of the times, the job will use external libraries. You will have to provide a `zip` archive with those dependencies, via the `--py-files` option, so the `spark-submit` command will look like this:
 
 ```
-spark-submit --py-files dependencies.zip spark_job.py
+spark-submit --master yarn --py-files dependencies.zip spark_job.py
 ```
 
 To create the `dependencies.zip` archive:
