@@ -4,8 +4,8 @@
 
 1. [Preliminaries](#1-preliminaries)
 2. [The data](#2-the-data)
-3. [Running jobs on the cluster](3-running-jobs-on-the-cluster)
-4. [A job template](4-a-job-template)
+3. [Running jobs on the cluster](#3-running-jobs-on-the-cluster)
+4. [A job template](#4-a-job-template)
 
 
 ### 1. Preliminaries
