@@ -5,6 +5,7 @@ The purpose of this project is to analyse the "impact" that events happening aro
 
 # Research questions
 We will emphasize our analysis on the following research questions:
+
 1. Which and what kind of events happened in Switzerland and globally.
 2. How twitter users reacted during and after an event, that could be interesting regarding social movements, political events, natural disasters, festivals, etc.
 3. What are the motivations of the users
@@ -21,6 +22,7 @@ Finally, if possible, we will try to extract geolocation information regarding u
 
 # A list of internal milestones up until project milestone 2
 Our workflow and goals up until milestone 2 are outlined below:
+
 * Obtain the chosen datasets and figure out their properties (columns, size, etc.).
 * Clean the datasets (keep only relevant columns, deal with missing data).
 * Try to make the connection between the tweets and the events.
