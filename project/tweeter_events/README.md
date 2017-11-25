@@ -27,7 +27,7 @@ The data is a single text (CSV, tab-separated) file and is located at the `/data
 
 **Important:** Edit the `username` file to contain your GASPAR username!
 
-Even though one can follow the <a href="https://github.com/epfl-ada/ADA2017-Tutorials/tree/master/05%20-%20Using%20the%20cluster" target="_blank">tutorial</a> to submit jobs from their local machine, I was not able to do this on a Mac (tried for about two hours and I have up). Therefore I have created a script to upload the `tweeter_events` directory to the cluster in order to be able to submit the job while logged in via SSH.
+Even though one can follow the <a href="https://github.com/epfl-ada/ADA2017-Tutorials/tree/master/05%20-%20Using%20the%20cluster" target="_blank">tutorial</a> to submit jobs from their local machine, I was not able to do this on a Mac (tried for about two hours and I gave up). Therefore I have created a script to upload the `tweeter_events` directory to the cluster in order to be able to submit the job while logged in via SSH.
 
 The `upload_to_cluster.sh` script will `rsync` the `tweeter_events` directory to the cluster, appending your GASPAR username at the end. This is to ensure that each one has it's own place to put his/her code and that we do not delete each one's files.
 
