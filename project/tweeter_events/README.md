@@ -13,7 +13,13 @@
 In order to make the development pipeline less frustrating, consider doing the following.
 
 - If you are off campus and want to use the cluster, make sure that you are connected to the EPFL <a href="https://epnet.epfl.ch/" target="_blank">VPN</a>.
-- Instead of modifying your environment, run `. load_yarn.sh` every time before starting your development.
+- Instead of modifying your environment, run `. load_yarn.sh` every time before starting your development (**note:** do not run the aforementioned command if you intend to work locally - if you have already done so, start a new terminal).
+- In order to not have to enter your password on every cluster login, consider creating and installing an SSH key on the cluster. To do this:
+  - <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" target="_blank">Create an SSH key</a>, if you don't already have one (check under `~/.ssh/`).
+  - Upload your key to the cluster node:
+      ```
+      ssh-copy-id -i ~/.ssh/id_rsa.pub USERNAME@iccluster060.iccluster.epfl.ch
+      ```
 
 
 ### 2. The data
