@@ -72,3 +72,8 @@ To create the `dependencies.zip` archive:
 ### 4. A job template
 
 Since the most common task will be to iterate over the rows of the data file, an "iteration" template has been created within the source directory (`tweeter_events`). Use it as a basis for any job you want to run.
+
+### 5. Other notes
+
+* To run the `pyspark` interactive shell in `ipython`, prepend `env PYSPARK_DRIVER_PYTHON=ipython` to the pyspark command.
+* The tweets-leon dataset contains unicode (UTF-8) encoded data. To manipulate them correctly, set `PYTHONIOENCODING=utf8` before submitting your jobs.
