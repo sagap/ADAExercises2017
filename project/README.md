@@ -10,7 +10,6 @@ In our analysis, we are going to make a choice of event categories, such as 'pol
 1. How much Twitter users (Swiss and global) tweeted about the event (in terms of total numbers of tweets and retweets)
 2. How were the tweets referring to this event distributed, in the months during and after the event
 3. What were the sentiments that these tweets provoked
-4. How were the tweets distributed in the different Swiss cantons and areas
 
 # Dataset
 For the purposes of our project, we would like to combine the datasets of global tweets and Swiss tweets. We are planning to determine whether a tweet is referring to a specific event or not by comparing the timestamps of the tweet and the event, as well as by checking for keywords and hashtags. The analysis, will be executed in two parts, one for the Swiss tweets dataset and one for the global tweets dataset.
