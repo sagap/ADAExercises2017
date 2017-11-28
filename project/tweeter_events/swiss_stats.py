@@ -51,7 +51,28 @@ def counts_by_region():
             counts[loc] = (counts[loc] + 1) if loc in counts else 1
     return counts
 
+def counts_by_sentiment():
+    """Return the counts of the tweets per sentiment.
 
-langs = counts_by_lang()
+    Possible values for sentiments:
+        - NA (missing)
+        - NEGATIVE
+        - NEUTRAL
+        - POSITIVE
+    """
+    counts = {'NA': 0}
+    for file_ in json_files():
+        f = open(file_)
+        for o in json.load(f):
+            if 'sentiment' not in o['_source']:
+                counts['NA'] += 1
+                continue
+            sent = o['_source']['sentiment']
+            counts[sent] = (counts[sent] + 1) if sent in counts else 1
+    return counts
+
+
+by_langs = counts_by_lang()
 min_date, max_date = date_range()
-regional = counts_by_region()
+by_region = counts_by_region()
+by_sentiment = counts_by_sentiment()
