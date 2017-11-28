@@ -13,7 +13,7 @@ def json_files():
             yield os.path.join(DATA_DIR, file_)
 
 def counts_by_lang():
-    """Return the tweet counts by language."""
+    """Return the Swiss tweet counts by language."""
     langs = {}
     for file_ in json_files():
         f = open(file_)
@@ -23,7 +23,7 @@ def counts_by_lang():
     return langs
 
 def date_range():
-    """Return time period that the tweets span."""
+    """Return time period that the Swiss tweets span."""
     min_date = None
     max_date = None
     for file_ in json_files():
@@ -34,7 +34,7 @@ def date_range():
     return min_date, max_date
 
 def counts_by_region():
-    """Return the counts of the tweets per region.
+    """Return the counts of the Swiss tweets per region.
 
     These regions can be in all possible languages and spelling combinations
     (depends on the user). E.g. Geneva can be written as "Geneve", "Geneva",
@@ -52,7 +52,7 @@ def counts_by_region():
     return counts
 
 def counts_by_sentiment():
-    """Return the counts of the tweets per sentiment.
+    """Return the counts of the Swiss tweets per sentiment.
 
     Possible values for sentiments:
         - NA (missing)
@@ -72,7 +72,20 @@ def counts_by_sentiment():
     return counts
 
 
+def counts_by_day():
+    """Return the counts of the Swiss tweets per day."""
+    counts = {}
+    for file_ in json_files():
+        f = open(file_)
+        for o in json.load(f):
+            dt = parser.parse(o['_source']['published'])
+            dtstr = '-'.join([str(dt.year), str(dt.month), str(dt.day)])
+            counts[dtstr] = (counts[dtstr] + 1) if dtstr in counts else 1
+    return counts
+
+
 by_langs = counts_by_lang()
 min_date, max_date = date_range()
 by_region = counts_by_region()
 by_sentiment = counts_by_sentiment()
+by_day = counts_by_day()
