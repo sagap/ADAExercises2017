@@ -1,4 +1,4 @@
-# Event analysis through "Twitter lenses"
+# What Twitter users tweet about
 
 # Abstract
 
