@@ -28,7 +28,7 @@ groups.coalesce(1).write \
 #   --master yarn \
 #   --packages com.databricks:spark-csv_2.10:1.5.0 \
 #   --num-executors 128 --executor-cores 16 \
-#   tweeter_events-dona/job_tweets_by_lang.py
+#   src-dona/job_tweets_by_lang.py
 #
 # Results are:
 # +----------+----------------+

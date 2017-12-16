@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+import nltk
+nltk.data.path=["."]
+
 from textblob import TextBlob
 # textblob classes for English
 from textblob.en.taggers import NLTKTagger as PatternTaggerEn
@@ -26,9 +30,9 @@ objs = {
 }
 
 samples = [
-  ("en", "I am very happy!"),
-  ("fr", "Je suis très heureux!"),
-  ("de", "Ich bin sehr glücklich!"),
+  ("en", u"I am very happy!"),
+  ("fr", u"Je suis très heureux!"),
+  ("de", u"Ich bin sehr glücklich!"),
 ]
 
 for lang, text in samples:
