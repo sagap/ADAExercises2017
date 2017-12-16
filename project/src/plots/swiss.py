@@ -65,15 +65,19 @@ class SwissTweetsPlotter(Plotter):
         df['count'] = pd.to_numeric(df['count'])
         # sort by language name
         df.sort_values(by=['language'], inplace=True)
-        # form output file path
-        ofpath = os.path.join(self.output_dir, 'swiss_lang_bar.html')
         # plot and save
+        # form output file path for bar chart
+        ofpath = os.path.join(self.output_dir, 'swiss_lang_bar.html')
         bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
                      hovertext=["{}: {:,} tweets".format(r.language, r.count) \
                                 for r in df.itertuples()],
                      hoverlabel={'bgcolor': 'green'})
         py.plot([bar], filename=ofpath, auto_open=False)
+        # form output file path for pie chart
+        ofpath = os.path.join(self.output_dir, 'swiss_lang_pie.html')
+        pie = go.Pie(labels=df['language'], values=df['count'])
+        py.plot([pie], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 
     def export_all(self):
