@@ -65,7 +65,6 @@ class SwissTweetsPlotter(Plotter):
         df['count'] = pd.to_numeric(df['count'])
         # sort by language name
         df.sort_values(by=['language'], inplace=True)
-        print(df)
         # form output file path
         ofpath = os.path.join(self.output_dir, 'swiss_lang_bar.html')
         # plot and save
