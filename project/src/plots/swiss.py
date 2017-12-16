@@ -38,10 +38,18 @@ class SwissTweetsPlotter(Plotter):
 
     def export_language_plots(self):
         _logger.info('Starting: export language plots')
+        lang_map = {
+            'en': 'english',
+            'fr': 'french',
+            'de': 'german',
+            'it': 'italian',
+            'es': 'spanish',
+            'nl': 'dutch',
+        }
         # read CSV via pandas
         df = pd.read_csv(
                 os.path.join(self.data_dir, 'tweets_by_language.csv'),
-                delimiter=',', index_col=None, names=['language', 'count'])
+                delimiter=',', index_col=None)
         # keep only tweets written in:
         # english, french, german, italian, spanish or dutch
         cond = ((df['language'] == 'en') |
@@ -51,14 +59,21 @@ class SwissTweetsPlotter(Plotter):
                 (df['language'] == 'es') |
                 (df['language'] == 'nl'))
         df = df[cond]
-        df.set_index('language', inplace=True)
+        # apply language mapping to language column
+        df['language'] = df['language'].map(lang_map)
+        # convert count to numeric
         df['count'] = pd.to_numeric(df['count'])
+        # sort by language name
+        df.sort_values(by=['language'], inplace=True)
+        print(df)
         # form output file path
         ofpath = os.path.join(self.output_dir, 'swiss_lang_bar.html')
         # plot and save
-        bar = go.Bar(x=df.index, y=df['count'],
+        bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
-                     hovertext=["{:,} tweets".format(x) for x in df['count']])
+                     hovertext=["{}: {:,} tweets".format(r.language, r.count) \
+                                for r in df.itertuples()],
+                     hoverlabel={'bgcolor': 'green'})
         py.plot([bar], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 

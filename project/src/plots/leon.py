@@ -6,6 +6,7 @@ defined below.
 """
 import os
 import logging
+import csv
 
 import pandas as pd
 import numpy as np
@@ -39,7 +40,22 @@ class TweetsLeonPlotter(Plotter):
     def export_language_plots(self):
         _logger.info('Starting: export language plots')
         # read CSV via pandas
-        df = pd.read_csv(os.path.join(self.data_dir, 'tweets_by_language.csv'))
+        df = pd.read_csv(
+                os.path.join(self.data_dir, 'tweets_by_language.csv'),
+                delimiter=',', index_col=None)
+        # convert count to numeric
+        df['count'] = pd.to_numeric(df['count'])
+        # sort by language name
+        df.sort_values(by=['language'], inplace=True)
+        # form output file path
+        ofpath = os.path.join(self.output_dir, 'leon_lang_bar.html')
+        # plot and save
+        bar = go.Bar(x=df['language'], y=df['count'],
+                     hoverinfo='text',
+                     hovertext=["{}: {:,} tweets".format(r.language, r.count) \
+                                for r in df.itertuples()],
+                     hoverlabel={'bgcolor': 'green'})
+        py.plot([bar], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 
     def export_all(self):
