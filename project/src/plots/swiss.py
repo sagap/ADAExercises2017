@@ -39,7 +39,27 @@ class SwissTweetsPlotter(Plotter):
     def export_language_plots(self):
         _logger.info('Starting: export language plots')
         # read CSV via pandas
-        df = pd.read_csv(os.path.join(self.data_dir, 'tweets_by_language.csv'))
+        df = pd.read_csv(
+                os.path.join(self.data_dir, 'tweets_by_language.csv'),
+                delimiter=',', index_col=None, names=['language', 'count'])
+        # keep only tweets written in:
+        # english, french, german, italian, spanish or dutch
+        cond = ((df['language'] == 'en') |
+                (df['language'] == 'fr') |
+                (df['language'] == 'de') |
+                (df['language'] == 'it') |
+                (df['language'] == 'es') |
+                (df['language'] == 'nl'))
+        df = df[cond]
+        df.set_index('language', inplace=True)
+        df['count'] = pd.to_numeric(df['count'])
+        # form output file path
+        ofpath = os.path.join(self.output_dir, 'swiss_lang_bar.html')
+        # plot and save
+        bar = go.Bar(x=df.index, y=df['count'],
+                     hoverinfo='text',
+                     hovertext=["{:,} tweets".format(x) for x in df['count']])
+        py.plot([bar], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 
     def export_all(self):
