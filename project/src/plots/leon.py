@@ -50,15 +50,17 @@ class TweetsLeonPlotter(Plotter):
         # plot and save
         # form output file path for bar chart
         ofpath = os.path.join(self.output_dir, 'leon_lang_bar.html')
+        layout = go.Layout(title='Tweet counts by language (Tweets Leon)')
         bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
                      hovertext=["{}: {:,} tweets".format(r.language, r.count) \
                                 for r in df.itertuples()],
                      hoverlabel={'bgcolor': 'green'})
-        py.plot([bar], filename=ofpath, auto_open=False)
+        fig = go.Figure(data=[bar], layout=layout)
+        py.plot(fig, filename=ofpath, auto_open=False)
         # form output file path for pie chart
         ofpath = os.path.join(self.output_dir, 'leon_lang_pie.html')
-        pie = go.Pie(labels=df['language'], values=df['count'])
+        pie = go.Pie(labels=df['language'], values=df['count'], sort=False)
         py.plot([pie], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 
