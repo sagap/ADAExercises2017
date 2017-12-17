@@ -82,8 +82,31 @@ class SwissTweetsPlotter(Plotter):
         py.plot([pie], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 
+    def export_daily_count_plots(self):
+        _logger.info('Starting: export daily count plots')
+        # read CSV via pandas
+        df = pd.read_csv(
+                os.path.join(self.data_dir, 'tweets_by_day.csv'),
+                delimiter=',', index_col=None)
+        # convert count to numeric
+        df['count'] = pd.to_numeric(df['count'])
+        df['date'] = pd.to_datetime(df['date'])
+        # sort by date
+        df.sort_values(by=['date'], inplace=True)
+        # form output file path for scatter plot
+        ofpath = os.path.join(self.output_dir, 'swiss_daily.html')
+        layout = go.Layout(title='Tweet counts by day (Swiss Tweets)')
+        scatter = go.Scatter(x=df['date'], y=df['count'],
+                             hoverinfo='text',
+                             hovertext=["{:,} tweets".format(r.count) \
+                                        for r in df.itertuples()])
+        fig = go.Figure(data=[scatter], layout=layout)
+        py.plot(fig, filename=ofpath, auto_open=False)
+        _logger.info('Finished: export daily count plots')
+
     def export_all(self):
         self.export_language_plots()
+        self.export_daily_count_plots()
 
 
 def main():
