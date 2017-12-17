@@ -96,10 +96,7 @@ class SwissTweetsPlotter(Plotter):
         # form output file path for scatter plot
         ofpath = os.path.join(self.output_dir, 'swiss_daily.html')
         layout = go.Layout(title='Tweet counts by day (Swiss Tweets)')
-        scatter = go.Scatter(x=df['date'], y=df['count'],
-                             hoverinfo='text',
-                             hovertext=["{:,} tweets".format(r.count) \
-                                        for r in df.itertuples()])
+        scatter = go.Scatter(x=df['date'], y=df['count'])
         fig = go.Figure(data=[scatter], layout=layout)
         py.plot(fig, filename=ofpath, auto_open=False)
         _logger.info('Finished: export daily count plots')
