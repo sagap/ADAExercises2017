@@ -48,7 +48,7 @@ class TweetsLeonPlotter(Plotter):
         layout = go.Layout(title='Tweet counts by language (Tweets Leon)')
         bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
-                     hovertext=["{}: {:,} tweets".format(r.language, r.count)
+                     hovertext=["{}<br>{:,} tweets".format(r.language, r.count)
                                 for r in df.itertuples()],
                      hoverlabel={'bgcolor': 'green'})
         fig = go.Figure(data=[bar], layout=layout)
@@ -84,6 +84,7 @@ class TweetsLeonPlotter(Plotter):
     def export_all(self):
         self.export_language_plots()
         self.export_monthly_count_plots()
+        self.export_joint_plot()
 
 
 def main():

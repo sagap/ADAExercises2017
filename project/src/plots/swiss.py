@@ -67,7 +67,7 @@ class SwissTweetsPlotter(Plotter):
         layout = go.Layout(title='Tweet counts by language (Swiss Tweets)')
         bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
-                     hovertext=["{}: {:,} tweets".format(r.language, r.count)
+                     hovertext=["{}<br>{:,} tweets".format(r.language, r.count)
                                 for r in df.itertuples()],
                      hoverlabel={'bgcolor': 'green'})
         fig = go.Figure(data=[bar], layout=layout)
