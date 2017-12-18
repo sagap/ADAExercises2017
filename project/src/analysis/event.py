@@ -48,6 +48,25 @@ class Event(object):
 class EventParser(object):
     """
     Parses an "event file", that is, a CSV file containing event definitions.
+
+    The event definition shall have the following columns:
+        - event_id: the unique event identifier
+        - description: the event description
+        - date: the date the event occurred
+        - keywords: the keyword specification, as explained below
+
+    The keyword specification shall be a disjunction of conjunctions of words
+    that should appear to some text (tweet) in order for the tweet to match
+    the given event.
+
+    The disjunction character is | and the conjunction character is &.
+    Example:
+        hello&earth|hello&mars:
+            matches some text containing the word "hello" and the word "earth"
+            or containing the word "hello" and the word "mars".
+        syria&chemical&attack|sarin:
+            matches some text containing the word "syria" and the word
+            "chemical" and the word "attack" or containing the word "sarin".
     """
 
     def __init__(self, events_fpath):
