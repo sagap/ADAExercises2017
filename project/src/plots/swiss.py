@@ -8,10 +8,6 @@ import os
 import logging
 
 import pandas as pd
-import numpy as np
-
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 import plotly.offline as py
 import plotly.graph_objs as go
@@ -48,8 +44,8 @@ class SwissTweetsPlotter(Plotter):
         }
         # read CSV via pandas
         df = pd.read_csv(
-                os.path.join(self.data_dir, 'tweets_by_language.csv'),
-                delimiter=',', index_col=None)
+            os.path.join(self.data_dir, 'tweets_by_language.csv'),
+            delimiter=',', index_col=None)
         # keep only tweets written in:
         # english, french, german, italian, spanish or dutch
         cond = ((df['language'] == 'en') |
@@ -71,7 +67,7 @@ class SwissTweetsPlotter(Plotter):
         layout = go.Layout(title='Tweet counts by language (Swiss Tweets)')
         bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
-                     hovertext=["{}: {:,} tweets".format(r.language, r.count) \
+                     hovertext=["{}: {:,} tweets".format(r.language, r.count)
                                 for r in df.itertuples()],
                      hoverlabel={'bgcolor': 'green'})
         fig = go.Figure(data=[bar], layout=layout)
@@ -86,8 +82,8 @@ class SwissTweetsPlotter(Plotter):
         _logger.info('Starting: export daily count plots')
         # read CSV via pandas
         df = pd.read_csv(
-                os.path.join(self.data_dir, 'tweets_by_day.csv'),
-                delimiter=',', index_col=None)
+            os.path.join(self.data_dir, 'tweets_by_day.csv'),
+            delimiter=',', index_col=None)
         # convert count to numeric
         df['count'] = pd.to_numeric(df['count'])
         df['date'] = pd.to_datetime(df['date'])
@@ -98,7 +94,7 @@ class SwissTweetsPlotter(Plotter):
         layout = go.Layout(title='Tweet counts by day (Swiss Tweets)')
         scatter = go.Scatter(x=df['date'], y=df['count'],
                              hoverinfo='text+x',
-                             hovertext=["{:,} tweets".format(r.count) \
+                             hovertext=["{:,} tweets".format(r.count)
                                         for r in df.itertuples()])
         fig = go.Figure(data=[scatter], layout=layout)
         py.plot(fig, filename=ofpath, auto_open=False)

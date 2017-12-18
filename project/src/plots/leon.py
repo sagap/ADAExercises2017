@@ -6,13 +6,8 @@ defined below.
 """
 import os
 import logging
-import csv
 
 import pandas as pd
-import numpy as np
-
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 import plotly.offline as py
 import plotly.graph_objs as go
@@ -41,8 +36,8 @@ class TweetsLeonPlotter(Plotter):
         _logger.info('Starting: export language plots')
         # read CSV via pandas
         df = pd.read_csv(
-                os.path.join(self.data_dir, 'tweets_by_language.csv'),
-                delimiter=',', index_col=None)
+            os.path.join(self.data_dir, 'tweets_by_language.csv'),
+            delimiter=',', index_col=None)
         # convert count to numeric
         df['count'] = pd.to_numeric(df['count'])
         # sort by language name
@@ -53,7 +48,7 @@ class TweetsLeonPlotter(Plotter):
         layout = go.Layout(title='Tweet counts by language (Tweets Leon)')
         bar = go.Bar(x=df['language'], y=df['count'],
                      hoverinfo='text',
-                     hovertext=["{}: {:,} tweets".format(r.language, r.count) \
+                     hovertext=["{}: {:,} tweets".format(r.language, r.count)
                                 for r in df.itertuples()],
                      hoverlabel={'bgcolor': 'green'})
         fig = go.Figure(data=[bar], layout=layout)
@@ -64,8 +59,31 @@ class TweetsLeonPlotter(Plotter):
         py.plot([pie], filename=ofpath, auto_open=False)
         _logger.info('Finished: export language plots')
 
+    def export_monthly_count_plots(self):
+        _logger.info('Starting: export monthly count plots')
+        # read CSV via pandas
+        df = pd.read_csv(
+            os.path.join(self.data_dir, 'tweets_by_month.csv'),
+            delimiter=',', index_col=None)
+        # convert count to numeric
+        df['count'] = pd.to_numeric(df['count'])
+        df['month'] = pd.to_datetime(df['month'])
+        # sort by date
+        df.sort_values(by=['month'], inplace=True)
+        # form output file path for scatter plot
+        ofpath = os.path.join(self.output_dir, 'leon_monthly.html')
+        layout = go.Layout(title='Tweet counts by month (Tweets Leon)')
+        scatter = go.Scatter(x=df['month'], y=df['count'],
+                             hoverinfo='text+x',
+                             hovertext=["{:,} tweets".format(r.count)
+                                        for r in df.itertuples()])
+        fig = go.Figure(data=[scatter], layout=layout)
+        py.plot(fig, filename=ofpath, auto_open=False)
+        _logger.info('Finished: export daily count plots')
+
     def export_all(self):
         self.export_language_plots()
+        self.export_monthly_count_plots()
 
 
 def main():
