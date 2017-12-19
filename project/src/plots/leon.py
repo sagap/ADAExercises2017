@@ -84,7 +84,6 @@ class TweetsLeonPlotter(Plotter):
     def export_all(self):
         self.export_language_plots()
         self.export_monthly_count_plots()
-        self.export_joint_plot()
 
 
 def main():
