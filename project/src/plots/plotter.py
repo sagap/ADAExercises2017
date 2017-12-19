@@ -5,6 +5,12 @@ import os
 import logging
 import abc
 
+import pandas as pd
+import numpy as np
+
+import plotly.offline as py
+import plotly.graph_objs as go
+
 import configparser
 
 logging.basicConfig(
@@ -53,6 +59,58 @@ class Plotter(abc.ABC):
             _logger.error('Could not find data directory! Expected in: '
                           '%s', self.data_dir)
 
+    def export_counts_multi_plot(self, *args):
+        """Export multiple time series into a single plot.
+
+        Arguments:
+            - args: the IDs of the events to plot. if None, exports all events.
+        """
+        _logger.info('Starting: export daily count multiplot')
+        # read results into a dataframe
+        results = pd.read_csv(
+            os.path.join(self.data_dir, 'results', 'daily_counts.csv'),
+            delimiter=',', index_col=None)
+        # make necessary convertions
+        results['event_id'] = pd.to_numeric(results['event_id'])
+        results['date'] = pd.to_datetime(results['date'])
+        results['count'] = pd.to_numeric(results['count'])
+        results.set_index('event_id', inplace=True)  # set index
+        # read events into a dataframe
+        events = pd.read_csv(
+            os.path.join(self.data_dir, 'events', 'events.csv'),
+            delimiter=';', index_col=None)
+        # make necessary convertions
+        events['id'] = pd.to_numeric(events['id'])
+        events['date'] = pd.to_datetime(events['date'])
+        events.set_index('id', inplace=True)  # set index
+        # assign names in results from events dataframe
+        results['event_name'] = events['name']
+        # sort by date
+        results.sort_values(by='date', inplace=True)
+        # start building plot...
+        traces = [
+            go.Scatter(x=df['date'], y=df['count'],
+                       name=df['event_name'].iloc[0],
+                       hoverinfo='y+name', line=dict(width='1.5'))
+            for df in self._slice_by_event_ids(results, *args)
+        ]
+        # form output file path for scatter plot
+        ofpath = os.path.join(self.output_dir, 'sample.html')
+        layout = go.Layout(title='Cummulative analysis plot '
+                                 '(click on the legend items to toggle them)',
+                           xaxis=dict(title='Day'),
+                           yaxis=dict(title='Number of tweets'))
+        fig = go.Figure(data=traces, layout=layout)
+        py.plot(fig, filename=ofpath, auto_open=False)
+        _logger.info('Finished: export daily count multiplot')
+
+    @staticmethod
+    def _slice_by_event_ids(results, *args):
+        if not args:
+            args = np.unique(results.index.values)
+        for i in args:
+            yield results.loc[i]
+
     @property
     def data_dir(self):
         return self._data_dir
@@ -60,4 +118,3 @@ class Plotter(abc.ABC):
     @property
     def output_dir(self):
         return self._output_dir
-
