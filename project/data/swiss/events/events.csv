@@ -1,16 +1,19 @@
 id;name;date;keywords
-1;Zika virus outbreak;2016-01-28;zika&virus|#zika
-2;North Korea rocket launch;2016-02-07;north&korea|cor&nord|nord&korea|corea&nord
-3;Obama visit to Cuba;2016-03-21;obama&cuba|obama&kuba
-4;EgyptAir flight 804 crash;2016-05-19;egyptair&crash|msr804|egyptair&absturz|egyptair&schianto
-5;UK referendum to leave the EU;2016-06-23;brexit|uk&referendum
-6;Ataturk Airport attack;2016-06-28;istanbul&attack|ataturk&attack|istanbul&bomb|instanbul&attentat|instanbul&pray
-7;Juno enters Jupiter orbit;2016-07-05;juno&jupiter|juno&orbit|juno&nasa
-8;Turkey coup attempt;2016-07-15;turkey&coup|turquie&coup|turkei&coup|turchia&colpo
-9;Olympic Games in Rio, Brazil;2016-08-05;olympics|olympicgames|rio2016|brazil2016
-10;Panama papers;2016-04-03;panama&papers|panama&papiers|panama&papiere|panama&documenti
-11;Pokemon Go!;2016-07-06;pokemon
-12;Montreux Jazz Festival 2016;2016-04-01;montreux&jazz
-13;Brussels Airport attack;2016-03-22;brussels&attack|bruxelles&attentat|brussels&pray
-14;Nice Bastille day attack;2016-07-14;nice&attack|nice&attentat|nice&pray
-15;Burkini ban in France;2016-01-01;burkini
+1;Zika virus outbreak;28/01/2016;zika&virus|#zika
+2;North Korea rocket launch;07/02/2016;north&korea|cor&nord|nord&korea|corea&nord
+3;Obama visit to Cuba;21/03/2016;obama&cuba|obama&kuba
+4;EgyptAir flight 804 crash;19/05/2016;egyptair&crash|msr804|egyptair&absturz|egyptair&schianto
+5;UK referendum to leave the EU;23/06/2016;brexit|uk&referendum
+6;Ataturk Airport attack;28/06/2016;istanbul&attack|ataturk&attack|istanbul&bomb|instanbul&attentat|instanbul&pray
+7;Juno enters Jupiter orbit;05/07/2016;juno&jupiter|juno&orbit|juno&nasa
+8;Turkey coup attempt;15/07/2016;turkey&coup|turquie&coup|turkei&coup|turchia&colpo
+9;Olympic Games in Rio, Brazil;05/08/2016;olympics|olympicgames|rio2016|brazil2016
+10;Panama papers;03/04/2016;panama&papers|panama&papiers|panama&papiere|panama&documenti
+11;Pokemon Go!;06/07/2016;pokemon
+12;Montreux Jazz Festival 2016;01/04/2016;montreux&jazz
+13;Brussels Airport attack;22/03/2016;brussels&attack|bruxelles&attentat|brussels&pray
+14;Nice Bastille day attack;14/07/2016;nice&attack|nice&attentat|nice&pray
+15;Burkini ban in France;01/01/2016;burkini
+16;Ski;01/01/2016;ski
+17;Chocolate;01/01/2016;chocolat|schokolade|cioccolato
+18;Emmanuel Macron;01/01/2016;macron
