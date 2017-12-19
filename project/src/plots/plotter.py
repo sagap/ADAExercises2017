@@ -95,7 +95,7 @@ class Plotter(abc.ABC):
             for df in self._slice_by_event_ids(results, *args)
         ]
         # form output file path for scatter plot
-        ofpath = os.path.join(self.output_dir, 'sample.html')
+        ofpath = os.path.join(self.output_dir, 'counts_all.html')
         layout = go.Layout(title='Cummulative analysis plot '
                                  '(click on the legend items to toggle them)',
                            xaxis=dict(title='Day'),
