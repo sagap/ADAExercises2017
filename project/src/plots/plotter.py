@@ -59,7 +59,7 @@ class Plotter(abc.ABC):
             _logger.error('Could not find data directory! Expected in: '
                           '%s', self.data_dir)
 
-    def export_counts_multi_plot(self, *args):
+    def export_counts_multi_plot(self, title, *args):
         """Export multiple time series into a single plot.
 
         Arguments:
@@ -96,8 +96,7 @@ class Plotter(abc.ABC):
         ]
         # form output file path for scatter plot
         ofpath = os.path.join(self.output_dir, 'counts_all.html')
-        layout = go.Layout(title='Cummulative analysis plot '
-                                 '(click on the legend items to toggle them)',
+        layout = go.Layout(title=title,
                            xaxis=dict(title='Day'),
                            yaxis=dict(title='Number of tweets'))
         fig = go.Figure(data=traces, layout=layout)

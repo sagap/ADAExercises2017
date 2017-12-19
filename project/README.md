@@ -34,5 +34,7 @@ Our workflow and goals up until Milestone 3 are outlined below:
 
 3. Final conclusions
 
+Our Analysis is explained in the extended version of the notebook we delivered in the This is an [2nd milestone] (https://github.com/sagap/ADAExercises2017/blob/master/project/Notebooks/Milestone2/milestone2_notebook.ipynb) and is described and we present some data stories under the URL: https://errikos.github.io/ada-showoff/index
+
 # Questions for TAs
 Add here some questions you have for us, in general or project-specific.
