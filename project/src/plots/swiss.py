@@ -100,9 +100,63 @@ class SwissTweetsPlotter(Plotter):
         py.plot(fig, filename=ofpath, auto_open=False)
         _logger.info('Finished: export daily count plots')
 
+    def export_counts_sentimental(self, *args):
+        _logger.info('Starting: export sentiment count plot')
+        # read results into a dataframe
+        results = pd.read_csv(
+            os.path.join(self.data_dir, 'results', 'sentimental_counts.csv'),
+            delimiter=',', index_col=None)
+        # make necessary convertions
+        results['event_id'] = pd.to_numeric(results['event_id'])
+        results['count'] = pd.to_numeric(results['count'])
+        results['polarity'] = results['polarity'].astype(str)
+        results.set_index('event_id', inplace=True)  # set index
+        # read events into a dataframe
+        events = pd.read_csv(
+            os.path.join(self.data_dir, 'events', 'events.csv'),
+            delimiter=';', index_col=None)
+        # make necessary convertions
+        events['id'] = pd.to_numeric(events['id'])
+        events['date'] = pd.to_datetime(events['date'])
+        events.set_index('id', inplace=True)  # set index
+        # assign names in results from events dataframe
+        results['event_name'] = events['name']
+        results = results.mask(results['polarity'].str.contains('UNKNOWN')) \
+                         .dropna()
+        results.sort_values(by='polarity', inplace=True)
+
+        # replace count with percentage in results
+        def gb(group):
+            gsum = group['count'].sum()
+            group['count'] = group['count'] \
+                .apply(lambda x: round(x / gsum * 100.0, 2))
+            results.loc[group.index.values[0]] = group
+        results.groupby(level=0).apply(gb)
+        # start building plot...
+        traces = [
+            go.Bar(x=df['polarity'], y=df['count'],
+                   name=df['event_name'].iloc[0],
+                   hoverinfo='text+name',
+                   hovertext=["{:,}%".format(r.count)
+                              for r in df.itertuples()])
+            for df in self._slice_by_event_ids(results, *args)
+        ]
+        # form output file path for scatter plot
+        ofpath = os.path.join(self.output_dir, 'sentiment_swiss_all.html')
+        layout = go.Layout(title='Cummulative polarity plot '
+                                 '(click on the legend items to toggle them)',
+                           barmode='group',
+                           xaxis=dict(title='Polarity'),
+                           yaxis=dict(title='Number of tweets'))
+        fig = go.Figure(data=traces, layout=layout)
+        py.plot(fig, filename=ofpath, auto_open=False)
+        _logger.info('Finished: export sentiment count plot')
+
     def export_all(self):
         self.export_language_plots()
         self.export_daily_count_plots()
+        self.export_counts_multi_plot()
+        self.export_counts_sentimental()
 
 
 def main():
