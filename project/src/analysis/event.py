@@ -41,8 +41,8 @@ class Event(object):
     def date_occured(self):
         return self._date_occured
 
-    def matches(self, text):
-        return self._functor(text)
+    def matches(self, word_bag):
+        return self._functor(word_bag)
 
 
 class EventParser(object):
