@@ -147,7 +147,7 @@ class SwissTweetsPlotter(Plotter):
                                  '(click on the legend items to toggle them)',
                            barmode='group',
                            xaxis=dict(title='Polarity'),
-                           yaxis=dict(title='Number of tweets'))
+                           yaxis=dict(title='Percentage (%)'))
         fig = go.Figure(data=traces, layout=layout)
         py.plot(fig, filename=ofpath, auto_open=False)
         _logger.info('Finished: export sentiment count plot')
